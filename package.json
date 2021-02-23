@@ -1,7 +1,10 @@
 {
-    "name": "vue-shopping-cart",
+    "name": "bakerbees",
     "version": "0.2.0",
     "private": true,
+    "engines": {
+        "node": "14.x"
+      },
     "scripts": {
         "serve": "vue-cli-service serve",
         "start": "nodemon server.js",
