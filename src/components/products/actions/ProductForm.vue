@@ -10,48 +10,48 @@
 
               <div class="form-group">
                 <label for="productName">Product Name</label>
-                <input type="text" class="form-control" id="productName" v-model="product.productName" name="productName" aria-describedby="emailHelp" placeholder="Enter Product Name">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input type="text" class="form-control" id="productName" v-model="product.productName" name="productName" placeholder="Enter Product Name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
               </div>
               <div class="form-group">
                 <label for="productCategory">Product Category</label>
                 <select class="form-control"  v-if="product.productCategory !== 'Create New'" id="productCategory" name="productCategory" v-model="product.productCategory">
-                    <option 
-                      v-for="(category, index) in categories" :key="index" 
-                      v-bind:value="category.productCategory" 
+                    <option
+                      v-for="(category, index) in categories" :key="index"
+                      v-bind:value="category.productCategory"
                       >{{category.productCategory}}
                     </option>
                 </select>
-                <input type="password" class="form-control" id="productCategroyDummy"  v-if="product.productCategory === 'Create New'" placeholder="Password" name="productCategroyDummy" v-model="product.productCategroyDummy">
+                <input type="text" class="form-control" id="productCategroyDummy"  v-if="product.productCategory === 'Create New'" placeholder="Product Category" name="productCategroyDummy" v-model="product.productCategroyDummy">
               </div>
               <div class="form-group">
                 <label for="productSeller">Product Seller</label>
                 <select class="form-control"  v-if="product.productSeller !== 'Create New'" id="productSeller" name="productSeller" v-model="product.productSeller">
-                    <option 
-                      v-for="(seller, index) in sellers" :key="index" 
-                      v-bind:value="seller.productSeller" 
+                    <option
+                      v-for="(seller, index) in sellers" :key="index"
+                      v-bind:value="seller.productSeller"
                       >{{seller.productSeller}}
                     </option>
                 </select>
-                <input type="password" class="form-control" id="productSellerDummy"  v-if="product.productSeller === 'Create New'" placeholder="Password" name="productSellerDummy" v-model="product.productSellerDummy">
+                <input type="text" class="form-control" id="productSellerDummy"  v-if="product.productSeller === 'Create New'" placeholder="Seller" name="productSellerDummy" v-model="product.productSellerDummy">
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="isBestProduct">Best Product</label>
-                    <input type="checkbox" class="form-control" id="isBestProduct" name="isBestProduct" v-model="product.isBestProduct" placeholder="Password">
+                    <input type="checkbox" class="form-control" id="isBestProduct" name="isBestProduct" v-model="product.isBestProduct" placeholder="">
                   </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                       <label for="isTopProduct">Top Product</label>
-                      <input type="checkbox" class="form-control" id="isTopProduct" name="isTopProduct" placeholder="Password" v-model="product.isTopProduct">
+                      <input type="checkbox" class="form-control" id="isTopProduct" name="isTopProduct" placeholder="" v-model="product.isTopProduct">
                     </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="productRating">Product Rating</label>
-                    <input type="password" class="form-control" id="productRating" placeholder="Password">
+                    <input type="number" class="form-control" id="productRating" placeholder="Out of 5">
                   </div>
                 </div>
               </div>

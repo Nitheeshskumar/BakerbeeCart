@@ -7,6 +7,8 @@
 </template>
 <script>
 import Modal from "../../shared/Modal.vue";
+import axios from "axios";
+import { successToaster, errorToaster } from "../../shared/service/ErrorHandler.js";
 import ProductForm from "./ProductForm";
 export default {
   name: "createProduct",
@@ -23,7 +25,24 @@ export default {
     },
 
     productAction: function(product) {
-      console.log("Creating new Product", product);
+      console.log("Creating new Product", this.product,product.productSeller);
+  axios
+          .post(`${process.env.VUE_APP_BASE_URL}/products`, this.product)
+          .then(response => {
+            this.showLoader = false;
+            successToaster(
+              "CreatedProduct",
+              "Created"
+            );
+          })
+          .catch(error => {
+            console.log(error);
+            errorToaster(
+              "Registeration Failed",
+              "Please try again after sometime"
+            );
+          });
+
       //
     }
   }

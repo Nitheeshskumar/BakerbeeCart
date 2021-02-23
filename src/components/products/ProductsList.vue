@@ -1,8 +1,8 @@
 <template>
     <div class="products">
            <div class="row">
-                <div class="col-md-4" 
-                v-for="(item, index) in products_list" 
+                <div class="col-md-4"
+                v-for="(item, index) in products_list"
                 :key="index">
                    <card-template :item="item" />
                 </div>
@@ -41,11 +41,11 @@ export default {
   font-size: 95%;
 }
 
-.card {
+/* .card {
   height: 490px;
-}
+} */
 .card-text {
-  height: 70px;
+  /* height: 70px; */
   overflow: hidden;
 }
 </style>

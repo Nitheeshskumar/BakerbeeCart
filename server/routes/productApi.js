@@ -23,7 +23,8 @@ router.route('/products')
         product.productPrice = req.body.productPrice
         product.productImage = req.body.productImage
         product.productSeller = req.body.productSeller
-        product.productRating = req.body.productRating
+        product.productRating = req.body.productRating,
+        product.isBestProduct = req.body.isBestProduct,
 
         // save the bear and check for errors
         product.save(product, (err, product) => {

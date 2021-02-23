@@ -67,7 +67,7 @@
       <router-view/>
     </main>
 
-    <footer class="container-fluid footer text-left mt-3">
+    <!-- <footer class="container-fluid footer text-left mt-3">
       <p class="mr-auto">
         Developed by:
         <strong>Mohammed Ismail</strong>
@@ -83,7 +83,7 @@
           <i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i>
         </a>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 

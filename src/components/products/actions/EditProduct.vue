@@ -8,6 +8,8 @@
 
 <script>
 import Modal from "../../shared/Modal";
+import axios from "axios";
+import { successToaster, errorToaster } from "../../shared/service/ErrorHandler.js";
 import ProductForm from "./ProductForm";
 
 export default {
@@ -27,6 +29,22 @@ export default {
 
     productAction: function(product) {
       console.log("Updated Product Details", product);
+      axios
+          .post(`${process.env.VUE_APP_BASE_URL}/products`, this.product)
+          .then(response => {
+            this.showLoader = false;
+            successToaster(
+              "CreatedProduct",
+              "Created"
+            );
+          })
+          .catch(error => {
+            console.log(error);
+            errorToaster(
+              "Registeration Failed",
+              "Please try again after sometime"
+            );
+          });
       // Update the product to server
     }
   }

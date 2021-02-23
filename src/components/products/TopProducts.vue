@@ -54,11 +54,11 @@ export default {
 </script>
 
 <style>
-.card {
+/* .card {
   height: 490px;
-}
+} */
 .card-text {
-  height: 70px;
+  /* height: 70px; */
   overflow: hidden;
 }
 </style>
