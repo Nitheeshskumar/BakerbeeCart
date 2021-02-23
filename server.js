@@ -5,7 +5,7 @@ const history = require('connect-history-api-fallback')
 // Get our API routes
 const mongodb = require('./server/mongo/config')
 
-
+const cors = require('cors')
 const api = require('./server/routes/api')
 const productApi = require('./server/routes/productApi')
 const ShippingDetailApi = require('./server/routes/shippingDetailApi')
@@ -14,6 +14,7 @@ const authApi = require('./server/routes/authApi')
 const app = express()
 
 // Parsers for POST data
+app.use(cors()) // We're telling express to use CORS
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
