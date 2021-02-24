@@ -25,6 +25,7 @@ router.route('/products')
         product.productSeller = req.body.productSeller
         product.productRating = req.body.productRating,
         product.isBestProduct = req.body.isBestProduct,
+        product.productType = req.body.productType,
 
         // save the bear and check for errors
         product.save(product, (err, product) => {
@@ -47,7 +48,32 @@ router.route('/products')
             res.json(data)
         })
     })
-
+    router.route('/products/bakerbee/')
+    .get(function (req, res) {
+        ProductModel.find({
+            productType: 'Bakerbee'
+        },
+            function (err, product) {
+                if (err) {
+                    res.send(err)
+                }
+                console.log('data', product)
+                res.json(product)
+            }).limit(4)
+    })
+    router.route('/products/willowbrook')
+    .get(function (req, res) {
+        ProductModel.find({
+            productType: 'WillowBrook'
+        },
+            function (err, product) {
+                if (err) {
+                    res.send(err)
+                }
+                console.log('data', product)
+                res.json(product)
+            }).limit(4)
+    })
 router.route('/best/products/')
     .get(function (req, res) {
         ProductModel.find({

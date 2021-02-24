@@ -40,7 +40,7 @@
             <a href="javascript:;;" @click="toggleForm">Sign in</a>
           </span>
           <span v-if="!isSignUp">
-            New to ikismail?
+            New to platform?
             <a href="javascript:;;" @click="toggleForm">Create an Account</a>
           </span>
         </p>
@@ -84,10 +84,10 @@ export default {
         email: this.email,
         password: this.password
       };
-
       axios
         .post(`${process.env.VUE_APP_BASE_URL}/login`, user)
         .then(response => {
+          debugger
           this.showLoader = false;
           this.ADD_LOGGED_USER(response.data[0]);
           event.target.reset();
@@ -95,7 +95,7 @@ export default {
         })
         .catch(error => {
           this.showLoader = false;
-          errorToaster("Invalid Credentials", "");
+          errorToaster("Invalid Credentials", "",this);
           console.log(error);
         });
     }

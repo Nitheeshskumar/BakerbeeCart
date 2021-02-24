@@ -10,7 +10,8 @@ var ProductSchema = new Schema({
     productSeller: String,
     isBestProduct: Boolean,
     isTopProduct: Boolean,
-    productRating: Number
+    productRating: Number,
+    productType:String
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

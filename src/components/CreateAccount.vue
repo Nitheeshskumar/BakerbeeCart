@@ -108,14 +108,15 @@ export default {
             this.showLoader = false;
             successToaster(
               "Registered Successfully",
-              "User Registered Successfully"
+              "User Registered Successfully",this
             );
+              this.$router.push(this.$route.query.from || "/");
           })
           .catch(error => {
             console.log(error);
             errorToaster(
               "Registeration Failed",
-              "Please try again after sometime"
+              "Please try again after sometime",this
             );
           });
       }

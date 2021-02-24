@@ -21,10 +21,10 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link">All Products</router-link>
+              <div id="link" @click="navigate('baker')" class="nav-link">BakerBee's</div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <div id="link" @click="navigate('willow')" class="nav-link">Willow Brook</div>
             </li>
             <li class="nav-item">
               <router-link to="/about" class="nav-link">About</router-link>
@@ -47,9 +47,10 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                 v-on:click="toggleNavbar2"
               >{{this.loggedUser.firstName}}</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <router-link to="/" class="dropdown-item">Profile</router-link>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" v-bind:class="{ show: nav2 }">
+                <router-link to="/profile" class="dropdown-item">Profile</router-link>
                 <!-- <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>-->
                 <router-link
@@ -98,7 +99,8 @@ export default {
   data() {
     return {
       cartValue: 0,
-      show:false
+      show:false,
+      nav2:false
     };
   },
   computed: mapState(["cartProducts", "loggedUser"]),
@@ -114,6 +116,9 @@ export default {
         this.SET_CART_PRODUCTS(products);
       }
     },
+    navigate(path){
+        this.$router.push({ path: `/department/${path}`, query: { plan: path } })
+    },
 
     isLogged() {
       return isLoggedIn();
@@ -126,6 +131,9 @@ export default {
     },
      toggleNavbar() {
       this.show = !this.show;
+    },
+    toggleNavbar2() {
+      this.nav2 = !this.nav2;
     }
   },
   created() {
@@ -162,7 +170,10 @@ export default {
     }
   }
 }
-
+#link{
+    font-weight: bold;
+    cursor: all-scroll;
+    color: #2c3e50;}
 html {
   position: relative;
   min-height: 100%;
@@ -222,5 +233,22 @@ footer {
 
 .buttonGreen:hover {
   background-color: #42a97b;
+}
+body.modal-open > .wrap {
+  overflow: hidden;
+  height: 100%;
+}
+
+.modal-content,
+.modal-dialog,
+.modal-body {
+  height: inherit;
+  min-height: 100%;
+  max-height: calc(100vh - 80px);
+overflow-y: auto;
+}
+
+.modal {
+  min-height: 100%;
 }
 </style>

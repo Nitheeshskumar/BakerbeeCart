@@ -5,7 +5,7 @@
         class="card-img-top mt-2"
         v-bind:src="item.productImage"
         alt="Card image cap"
-        style="max-height: 700px; max-width: 127.135px;margin: auto"
+        style="max-height: 200px; max-width: 200px;margin: auto"
       >
       <div class="card-body">
         <h6 class="card-text">{{item.productName}}.</h6>
@@ -17,7 +17,7 @@
               class="btn btn-sm btn-outline-secondary"
               v-on:click="navigateProductDetail(item)"
             >View</button>
-            
+
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
@@ -67,9 +67,9 @@ export default {
     addToCart(product) {
       const data = _.find(this.$store.getters.cartProducts, product);
       if (data) {
-        infoToaster("Already Added", "Product Already Added");
+        infoToaster("Already Added", "Product Already Added",this);
       } else {
-        successToaster("Added Successfully", "Product Added Successfully");
+        successToaster("Added Successfully", "Product Added Successfully",this);
         this.ADD_CART_LOCAL(product);
       }
     },

@@ -35,6 +35,17 @@
                 </select>
                 <input type="text" class="form-control" id="productSellerDummy"  v-if="product.productSeller === 'Create New'" placeholder="Seller" name="productSellerDummy" v-model="product.productSellerDummy">
               </div>
+              <div class="form-group">
+                <label for="productType">Product Type</label>
+                <select class="form-control"  v-if="product.productType !== 'Create New'" id="productType" name="productType" v-model="product.productType">
+                    <option
+                      v-for="(producttype, index) in producttypes" :key="index"
+                      v-bind:value="producttype.productType"
+                      >{{producttype.productType}}
+                    </option>
+                </select>
+                <input type="text" class="form-control" id="productCategroyDummy"  v-if="product.productCategory === 'Create New'" placeholder="Product Category" name="productCategroyDummy" v-model="product.productCategroyDummy">
+              </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
@@ -77,8 +88,9 @@ export default {
       errors: [],
       productCategroyDummy: "",
       productSellerDummy: "",
-      categories: [],
+      categories: [{}],
       sellers: [],
+      producttypes:[{productType:'Bakerbee'},{productType:'WillowBrook'}],
       loading: false
     };
   },
@@ -118,7 +130,7 @@ export default {
       })
       .catch(error => {
         console.log(error);
-        errorToaster("Error while fetching products", "");
+        errorToaster("Error while fetching products", "",this);
       });
   }
 };

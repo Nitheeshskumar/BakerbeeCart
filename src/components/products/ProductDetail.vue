@@ -9,7 +9,7 @@
                 v-bind:src="product.productImage"
                 v-bind:alt="product.productName"
                 class="img-fluid rounded"
-                style="max-height: 700px; max-width: 127.135px;margin: auto"
+                style="max-height:200px; max-width: 200px;margin: auto"
               >
             </div>
             <div class style="margin-top:15px">
@@ -135,7 +135,7 @@ export default {
       })
       .catch(error => {
         console.log(error);
-        errorToaster("Error while fetching similar products", "");
+        errorToaster("Error while fetching similar products", "",this);
       });
   }
 };

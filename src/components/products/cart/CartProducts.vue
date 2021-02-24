@@ -10,7 +10,7 @@
                   class="card-img-top mt-2"
                   v-bind:src="item.productImage"
                   alt="Card image cap"
-                  style="max-height: 700px; max-width: 127.135px;margin: auto"
+                  style="max-height: 200px; max-width: 200px;margin: auto"
                 >
                 <div class="card-body">
                   <h6 class="card-text">{{item.productName}}.</h6>

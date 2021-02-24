@@ -35,14 +35,14 @@ export default {
             this.showLoader = false;
             successToaster(
               "CreatedProduct",
-              "Created"
+              "Created",this
             );
           })
           .catch(error => {
             console.log(error);
             errorToaster(
               "Registeration Failed",
-              "Please try again after sometime"
+              "Please try again after sometime",this
             );
           });
       // Update the product to server

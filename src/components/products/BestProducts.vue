@@ -43,7 +43,7 @@ export default {
           console.log(error);
           errorToaster(
             "The server encountered an unexpected condition.",
-            "Internal Error 500"
+            "Internal Error 500",this
           );
         });
     }

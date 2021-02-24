@@ -4,7 +4,7 @@
         <div class="col-md-3 order-md-1 mb-4">
 
           <product-filter :categories="categories" :sellers="sellers"/>
-          
+
         </div>
         <div class="col-md-9 order-md-2">
           <!-- <h4 class="mb-3">Billing address</h4> -->
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    
+
 </template>
 
 
@@ -39,6 +39,8 @@ export default {
   methods: {
     getAllProducts: function() {
       this.loading = true;
+       console.log(this.$route.query);
+       debugger
       axios
         .get(`${process.env.VUE_APP_BASE_URL}/products`)
         .then(response => {
@@ -54,7 +56,6 @@ export default {
             "productCategory"
           );
           this.categories.unshift({ productCategory: "All" });
-          
           this.sellers = _.uniqBy(
             _.map(this.products_list, function(object) {
               return _.pick(object, ["productSeller"]);
@@ -67,7 +68,7 @@ export default {
           console.log(error);
         });
     },
-    
+
     filterProductBy(event, productFilterID) {
       const productList = [...this.products_list];
       let filteredData = [];
