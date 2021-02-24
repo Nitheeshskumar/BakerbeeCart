@@ -11,10 +11,11 @@
           aria-controls="navbarText"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          v-on:click="toggleNavbar"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+        <div class="collapse navbar-collapse" id="navbarText" v-bind:class="{ show: show }" >
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <router-link to="/" class="nav-link">Home</router-link>
@@ -30,13 +31,13 @@
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link to="/cart" class="nav-link">
                 <i class="fa fa-shopping-cart mr-1">
                   <span class="ml-1">{{this.cartProducts.length}}</span>
                 </i>
               </router-link>
-            </li>
+            </li> -->
             <li class="nav-item dropdown" v-if="isLogged()">
               <a
                 class="nav-link dropdown-toggle"
@@ -96,7 +97,8 @@ import {
 export default {
   data() {
     return {
-      cartValue: 0
+      cartValue: 0,
+      show:false
     };
   },
   computed: mapState(["cartProducts", "loggedUser"]),
@@ -121,6 +123,9 @@ export default {
       localStorage.removeItem("_auth");
       this.$router.push("/");
       location.reload();
+    },
+     toggleNavbar() {
+      this.show = !this.show;
     }
   },
   created() {
