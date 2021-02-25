@@ -4,7 +4,14 @@ const router = express.Router()
 // const mongodb = require('../mongo/config')
 
 const ProductModel = require('../mongo/model/product')
-
+const getdriverUrl=url=>{
+    // let a = "https://drive.google.com/file/d/1xOQTZgfxQxwnCgE5iEyizwjkC6AOoPTv/view?usp=drivesdk"
+    let a = url
+let b = a.split('file/d/')
+let c = b[1].split('/view?')
+let d = [b[0],'thumbnail?id=',c[0]].join('')
+return d
+}
 
 /*
   API for Product Schema
@@ -21,7 +28,7 @@ router.route('/products')
         product.productDescription = req.body.productDescription
         product.productCategory = req.body.productCategory
         product.productPrice = req.body.productPrice
-        product.productImage = req.body.productImage
+        product.productImage =  req.body.productImage.includes('https://drive.google.com/file/d/')? getdriverUrl(req.body.productImage): req.body.productImage
         product.productSeller = req.body.productSeller
         product.productRating = req.body.productRating,
         product.isBestProduct = req.body.isBestProduct,
@@ -48,32 +55,7 @@ router.route('/products')
             res.json(data)
         })
     })
-    router.route('/products/bakerbee/')
-    .get(function (req, res) {
-        ProductModel.find({
-            productType: 'Bakerbee'
-        },
-            function (err, product) {
-                if (err) {
-                    res.send(err)
-                }
-                console.log('data', product)
-                res.json(product)
-            }).limit(4)
-    })
-    router.route('/products/willowbrook')
-    .get(function (req, res) {
-        ProductModel.find({
-            productType: 'WillowBrook'
-        },
-            function (err, product) {
-                if (err) {
-                    res.send(err)
-                }
-                console.log('data', product)
-                res.json(product)
-            }).limit(4)
-    })
+
 router.route('/best/products/')
     .get(function (req, res) {
         ProductModel.find({
@@ -203,4 +185,21 @@ router.route('/products/:product_id')
             })
     })
 
+
+    router.get('/willow', async (req, res) => {
+        try {
+            const products = await ProductModel.find({ productType: 'WillowBrook' })
+            return res.status(200).json(products)
+        } catch (error) {
+            return res.status(500).json({ "error": error })
+        }
+    })
+    router.get('/baker', async (req, res) => {
+        try {
+            const products = await ProductModel.find({ productType: 'Bakerbee' })
+            return res.status(200).json(products)
+        } catch (error) {
+            return res.status(500).json({ "error": error })
+        }
+    })
 module.exports = router

@@ -21,10 +21,10 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <div id="link" @click="navigate('baker')" class="nav-link">BakerBee's</div>
+              <router-link to="/baker" id="link" :key="$route.name" class="nav-link">BakerBee's</router-link>
             </li>
             <li class="nav-item">
-              <div id="link" @click="navigate('willow')" class="nav-link">Willow Brook</div>
+               <router-link to="/willow" id="link" :key="$route.name" class="nav-link">Willow Brook</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/about" class="nav-link">About</router-link>
@@ -117,7 +117,7 @@ export default {
       }
     },
     navigate(path){
-        this.$router.push({ path: `/department/${path}`, query: { plan: path } })
+        this.$router.push({ path: `/${path}`, query: { plan: path },key:path })
     },
 
     isLogged() {

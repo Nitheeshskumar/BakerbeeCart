@@ -30,13 +30,15 @@ export default {
     productAction: function(product) {
       console.log("Updated Product Details", product);
       axios
-          .post(`${process.env.VUE_APP_BASE_URL}/products`, this.product)
+          .put(`${process.env.VUE_APP_BASE_URL}/products/${this.product._id}`, this.product)
           .then(response => {
             this.showLoader = false;
             successToaster(
-              "CreatedProduct",
-              "Created",this
+              "Updated Product",
+              "Sucess",this
             );
+             this.showModal = false;
+             if(this.$parent.$parent.getAllProducts)this.$parent.$parent.getAllProducts();
           })
           .catch(error => {
             console.log(error);

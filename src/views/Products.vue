@@ -36,13 +36,21 @@ export default {
       loading: false
     };
   },
+
   methods: {
     getAllProducts: function() {
       this.loading = true;
        console.log(this.$route.query);
-       debugger
+        debugger
+       let url = '/products'
+       if(this.$route.fullPath){
+         url = `/${this.$route.fullPath}`
+       }else{
+         url = '/products'
+       }
+
       axios
-        .get(`${process.env.VUE_APP_BASE_URL}/products`)
+        .get(`${process.env.VUE_APP_BASE_URL}${url}`)
         .then(response => {
           this.loading = false;
           this.products_list = response.data;
@@ -89,7 +97,15 @@ export default {
 
   created() {
     this.getAllProducts();
-  }
+  },
+  // updated(){
+  //  this.getAllProducts();
+  // },
+    beforeRouteLeave(to,from,next) {
+     next()
+    this.getAllProducts()
+
+  },
 };
 </script>
 

@@ -21,19 +21,27 @@ export default {
   },
   methods: {
     showModalForm: function() {
+
       this.showModal = true;
+    },
+    closeModalForm: function() {
+      this.showModal = false;
     },
 
     productAction: function(product) {
       console.log("Creating new Product", this.product,product.productSeller);
+      debugger
+if(this.product._id){
   axios
-          .post(`${process.env.VUE_APP_BASE_URL}/products`, this.product)
+          .put(`${process.env.VUE_APP_BASE_URL}/products/${this.product._id}`, this.product)
           .then(response => {
             this.showLoader = false;
             successToaster(
               "CreatedProduct",
               "Created",this
             );
+           this.closeModalForm()
+           this.$parent.$parent.getAllProducts()
           })
           .catch(error => {
             console.log(error);
@@ -42,6 +50,28 @@ export default {
               "Please try again after sometime",this
             );
           });
+}else{
+ axios
+          .post(`${process.env.VUE_APP_BASE_URL}/products`, this.product)
+          .then(response => {
+            this.showLoader = false;
+            successToaster(
+              "CreatedProduct",
+              "Created",this
+            );
+           this.closeModalForm()
+           this.$parent.$parent.getAllProducts()
+          })
+          .catch(error => {
+            console.log(error);
+            errorToaster(
+              "Registeration Failed",
+              "Please try again after sometime",this
+            );
+          });
+}
+
+
 
       //
     }

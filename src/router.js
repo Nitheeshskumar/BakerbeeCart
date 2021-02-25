@@ -30,13 +30,15 @@ export default new Router({
         component: () => import('./views/Products.vue')
     },
     {
-        path: '/department/baker',
-        name: 'department',
+        path: '/baker',
+        name: 'baker',
+        key:"$route.fullPath",
         component: () => import('./views/Products.vue')
     },
     {
-        path: '/department/willow',
-        name: 'department',
+        path: '/willow',
+        name: 'willow',
+        key:"$route.fullPath",
         component: () => import('./views/Products.vue')
     },
     {
