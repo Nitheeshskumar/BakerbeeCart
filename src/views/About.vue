@@ -1,11 +1,33 @@
 <template>
   <div class="about">
     <div class="container">
-      <div class="modal-content text-center">
+
+ <div class="modal-content text-center">
+        <div class="modal-header">
+          <h4 class="modal-title" style="margin: 0 auto">
+          Reach Us Out At  </h4>
+
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-outline-danger mb-2 widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')" >
+          <img src="../assets/instalogo.png" height="20px" > BakerBee's Basket</button> <br/>
+           <button type="button" class="btn btn-outline-danger mb-2 widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')">
+          <img src="../assets/instalogo.png" height="20px" >Willow Brook</button> <br/>
+           <button type="button" class="btn btn-outline-danger widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')">
+          <img src="../assets/instalogo.png" height="20px" > Russet Henna</button>
+
+
+
+
+        </div>
+      </div>
+
+
+      <div class="modal-content text-center mt-5">
         <div class="modal-header">
           <h4 class="modal-title" style="margin: 0 auto">
             More About
-            <span style="color:crimson">Nsk</span>
+            <span style="color:crimson">Developer</span>
           </h4>
         </div>
         <div class="modal-body">
@@ -31,12 +53,7 @@
           <span class="badge badge-secondary p-2 m-1">React</span>
           <span class="badge badge-success p-2 m-1">Github</span>
           <span class="badge badge-danger p-2 m-1">RestService</span>
-          <!-- <hr> -->
-          <!-- <p class="text-left">
-            <strong>Bio:</strong>
-            <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.
-          </p>
-          <br>-->
+
         </div>
         <!-- <div class="modal-footer" style="margin: 0 auto">
           <button type="button" class="btn btn-default" data-dismiss="modal">Read More</button>
@@ -45,8 +62,28 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      cartValue: 0,
+      show:false,
+      nav2:false
+    };
+  },
+   methods: {
+     navigate(route){
+
+     }
+   }
+}
+ </script>
+
 <style>
 .avatar {
   border-radius: 10px;
+}
+.widthset{
+  width:200px
 }
 </style>

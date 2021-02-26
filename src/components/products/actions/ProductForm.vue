@@ -44,8 +44,7 @@
                       >{{producttype.productType}}
                     </option>
                 </select>
-                <input type="text" class="form-control" id="productCategroyDummy"  v-if="product.productCategory === 'Create New'" placeholder="Product Category" name="productCategroyDummy" v-model="product.productCategroyDummy">
-              </div>
+                            </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
@@ -65,10 +64,19 @@
                     <input type="number" class="form-control" id="productRating" placeholder="Out of 5">
                   </div>
                 </div>
+
+              </div>
+                <div class="form-group">
+                <label for="productDescription">Product Description</label>
+                <input type="text" class="form-control" id="productDescription" v-model="product.productDescription" placeholder="Product Description">
               </div>
               <div class="form-group">
                 <label for="productImage">Product Image</label>
                 <input type="text" class="form-control" id="productImage" v-model="product.productImage" placeholder="Product Image URL">
+              </div>
+                <div class="form-group">
+                <label for="productPrice">Product Price</label>
+                <input type="text" class="form-control" id="productPrice" v-model="product.productPrice" placeholder="Product Price">
               </div>
               <br>
               <button type="submit" class="btn buttonGreen">Save changes</button>
@@ -90,7 +98,7 @@ export default {
       productSellerDummy: "",
       categories: [{}],
       sellers: [],
-      producttypes:[{productType:'Bakerbee'},{productType:'WillowBrook'}],
+      producttypes:[{productType:'Bakerbee'},{productType:'WillowBrook'},{productType:'RussetHenna'}],
       loading: false
     };
   },

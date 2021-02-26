@@ -30,7 +30,6 @@ export default {
 
     productAction: function(product) {
       console.log("Creating new Product", this.product,product.productSeller);
-      debugger
 if(this.product._id){
   axios
           .put(`${process.env.VUE_APP_BASE_URL}/products/${this.product._id}`, this.product)

@@ -42,10 +42,17 @@ export default new Router({
         component: () => import('./views/Products.vue')
     },
     {
+        path: '/russet',
+        name: 'russet',
+        key:"$route.fullPath",
+        component: () => import('./views/Products.vue')
+    },
+    {
         path: '/products/:id',
         name: 'productDetails',
         component: () => import('./components/products/ProductDetail.vue')
     },
+
     {
         path: '/cart',
         name: 'cart',

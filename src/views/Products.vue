@@ -103,7 +103,10 @@ export default {
   // },
     beforeRouteLeave(to,from,next) {
      next()
-    this.getAllProducts()
+     if(['willow','baker','russet'].includes(this.$route.fullPath)){
+  this.getAllProducts()
+     }
+
 
   },
 };

@@ -21,13 +21,16 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/baker" id="link" :key="$route.name" class="nav-link">BakerBee's</router-link>
+              <router-link to="/baker"  :key="$route.name" class="nav-link link">BakerBee's</router-link>
             </li>
             <li class="nav-item">
-               <router-link to="/willow" id="link" :key="$route.name" class="nav-link">Willow Brook</router-link>
+               <router-link to="/willow"  :key="$route.name" class="nav-link">Willow Brook</router-link>
+            </li>
+              <li class="nav-item">
+               <router-link to="/russet"  :key="$route.name" class="nav-link">Russet Henna</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/about" class="nav-link">About</router-link>
+              <router-link to="/about" class="nav-link">Reach Us</router-link>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -170,7 +173,7 @@ export default {
     }
   }
 }
-#link{
+.link{
     font-weight: bold;
     cursor: all-scroll;
     color: #2c3e50;}

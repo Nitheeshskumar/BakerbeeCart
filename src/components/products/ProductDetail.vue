@@ -175,7 +175,6 @@ export default {
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
 }
 
 .stars-inner::before {

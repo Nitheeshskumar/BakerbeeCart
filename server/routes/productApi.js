@@ -194,6 +194,14 @@ router.route('/products/:product_id')
             return res.status(500).json({ "error": error })
         }
     })
+    router.get('/russet', async (req, res) => {
+        try {
+            const products = await ProductModel.find({ productType: 'RussetHenna' })
+            return res.status(200).json(products)
+        } catch (error) {
+            return res.status(500).json({ "error": error })
+        }
+    })
     router.get('/baker', async (req, res) => {
         try {
             const products = await ProductModel.find({ productType: 'Bakerbee' })
