@@ -11,9 +11,9 @@
         <div class="modal-body">
           <button type="button" class="btn btn-outline-danger mb-2 widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')" >
           <img src="../assets/instalogo.png" height="20px" > BakerBee's Basket</button> <br/>
-           <button type="button" class="btn btn-outline-danger mb-2 widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')">
+           <button type="button" class="btn btn-outline-danger mb-2 widthset" onclick="window.open('https://www.instagram.com/_willow_brook_/')">
           <img src="../assets/instalogo.png" height="20px" >Willow Brook</button> <br/>
-           <button type="button" class="btn btn-outline-danger widthset" onclick="window.open('https://www.instagram.com/bakerbees_basket/')">
+           <button type="button" class="btn btn-outline-danger widthset" onclick="window.open('https://www.instagram.com/russ.et/')">
           <img src="../assets/instalogo.png" height="20px" > Russet Henna</button>
 
 

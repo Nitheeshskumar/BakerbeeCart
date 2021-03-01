@@ -41,7 +41,6 @@ export default {
     getAllProducts: function() {
       this.loading = true;
        console.log(this.$route.query);
-        debugger
        let url = '/products'
        if(this.$route.fullPath){
          url = `/${this.$route.fullPath}`
@@ -103,7 +102,7 @@ export default {
   // },
     beforeRouteLeave(to,from,next) {
      next()
-     if(['willow','baker','russet'].includes(this.$route.fullPath)){
+     if(['/willow','/baker','/russet'].includes(this.$route.fullPath)){
   this.getAllProducts()
      }
 
