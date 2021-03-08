@@ -8,15 +8,15 @@
         style="max-height: 200px; max-width: 200px;margin: auto"
       >
       <div class="card-body">
-        <h6 class="card-text">{{item.productName}}.</h6>
-        <p class="card-text">{{item.productDescription}}.</p>
+        <h6 class="card-text"> <strong> {{item.productName}}</strong></h6>
+        <p class="card-desc">{{item.productDescription}}</p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
               v-on:click="navigateProductDetail(item)"
-            >View</button>
+            >View Details</button>
 
             <button
               type="button"

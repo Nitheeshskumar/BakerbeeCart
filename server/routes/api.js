@@ -27,6 +27,7 @@ router.route('/users')
         user.fullName = req.body.firstName + " " + req.body.lastName
         user.password = req.body.password
         user.email = req.body.email
+        user.phoneNumber = req.body.phoneNumber
         user.isAdmin = false
         user.createdOn = new Date().toLocaleString()
 

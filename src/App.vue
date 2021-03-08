@@ -53,7 +53,7 @@
                  v-on:click="toggleNavbar2"
               >{{this.loggedUser.firstName}}</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" v-bind:class="{ show: nav2 }">
-                <router-link to="/profile" class="dropdown-item">Profile</router-link>
+                <router-link to="/profile" class="dropdown-item"   @click.native="toggleNavbar2">Profile</router-link>
                 <!-- <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>-->
                 <router-link
@@ -148,7 +148,7 @@ export default {
 
     console.log(process.env.NODE_ENV);
     console.log(process.env.VUE_APP_BASE_URL);
-  }
+  },
 };
 </script>
 

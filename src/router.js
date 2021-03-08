@@ -52,7 +52,12 @@ export default new Router({
         name: 'productDetails',
         component: () => import('./components/products/ProductDetail.vue')
     },
-
+    {
+        path: '/profile',
+        name: 'profile',
+        key:"$route.fullPath",
+        component: () => import('./views/Profile.vue')
+    },
     {
         path: '/cart',
         name: 'cart',

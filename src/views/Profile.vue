@@ -1,8 +1,8 @@
 <template>
   <div class="create-account">
     <form class="form-signup needs-validation" @submit.prevent="createAccount" novalidate>
-      <img class="mb-4" src="../assets/create-account.svg" alt width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Create an account</h1>
+      <!-- <img class="mb-4" src="../assets/create-account.svg" alt width="72" height="72"> -->
+      <h1 class="h3 mb-3 font-weight-normal">Edit Account Info</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -12,6 +12,7 @@
 
       <div class="row">
         <div class="col-md-6 mb-3">
+            <label for="firstName" class="float-left" > First Name </label>
           <input
             type="text"
             class="form-control"
@@ -23,6 +24,7 @@
           <div class="invalid-feedback">Valid first name is required.</div>
         </div>
         <div class="col-md-6 mb-3">
+              <label for="firstName" class="float-left" > Last Name </label>
           <input
             type="text"
             class="form-control"
@@ -37,6 +39,7 @@
       </div>
       <div class="row">
         <div class="col-md mb-3">
+              <label for="firstName" class="float-left" > Email </label>
           <input
             type="text"
             class="form-control"
@@ -46,25 +49,27 @@
             value
             required
           >
-          <div class="invalid-feedback">Valid first name is required.</div>
+          <div class="invalid-feedback">Valid Email is required.</div>
         </div>
       </div>
        <div class="row">
         <div class="col-md mb-3">
+              <label for="firstName" class="float-left" > Phone </label>
           <input
             type="text"
             class="form-control"
-            v-model="user.phone"
-            id="phone"
+            v-model="user.phoneNumber"
+            id="phoneNumber"
             placeholder="Phone Number"
             value
             required
           >
-          <div class="invalid-feedback">Valid first name is required.</div>
+          <div class="invalid-feedback">Valid Phone is required.</div>
         </div>
       </div>
       <div class="row">
         <div class="col-md mb-3">
+              <label for="firstName" class="float-left" > Password </label>
           <input
             type="text"
             class="form-control"
@@ -74,11 +79,11 @@
             v-model="user.password"
             required
           >
-          <div class="invalid-feedback">Valid first name is required.</div>
+          <div class="invalid-feedback">Valid Password is required.</div>
         </div>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
-        <i class="fa fa-spinner fa-spin mr-1" v-if="showLoader"></i>Sign Up
+        <i class="fa fa-spinner fa-spin mr-1" v-if="showLoader"></i>Update Info
       </button>
     </form>
   </div>
@@ -86,7 +91,9 @@
 </template>
 <script>
 import axios from "axios";
-import { successToaster, errorToaster } from "./shared/service/ErrorHandler.js";
+import { successToaster, errorToaster } from "@/components/shared/service/ErrorHandler.js";
+import { mapState, mapActions, mapMutations } from "vuex";
+import { decryptUser } from "@/components/shared/service/authService";
 export default {
   name: "CreateAccount",
   data() {
@@ -96,12 +103,15 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        phoneNumber:''
       },
       errorMessage: []
     };
   },
+  computed: mapState(["cartProducts", "loggedUser"]),
   methods: {
+       ...mapMutations(["SET_CART_PRODUCTS", "ADD_LOGGED_USER"]),
     createAccount(e) {
       this.showLoader = true;
 
@@ -116,24 +126,25 @@ export default {
       if (this.ValidateEmail(this.user.email) === false) {
         this.errorMessage.push("Please provide a valid Email address");
       }
-       if (this.ValidatePhone(this.user.phone) === false) {
+       if (this.ValidatePhone(this.user.phoneNumber) === false) {
         this.errorMessage.push("Please provide a valid Mobile No");
       }
       if (this.errorMessage.length === 0) {
         axios
-          .post(`${process.env.VUE_APP_BASE_URL}/users`, this.user)
+          .put(`${process.env.VUE_APP_BASE_URL}/users/${this.user._id}`, this.user)
           .then(response => {
             this.showLoader = false;
             successToaster(
-              "Registered Successfully",
-              "User Registered Successfully",this
+              "Updated Successfully",
+              "User Updated Successfully",this
             );
+             this.ADD_LOGGED_USER(response.data);
               this.$router.push(this.$route.query.from || "/");
           })
           .catch(error => {
             console.log(error);
             errorToaster(
-              "Registeration Failed",
+              "Update Failed",
               "Please try again after sometime",this
             );
           });
@@ -151,7 +162,16 @@ export default {
         return true
       }
       return false
+    },
+    loadProfile(){
+
+   const detail= decryptUser()
+   console.log(detail)
+   this.user=detail
     }
+  },
+  created(){
+      this.loadProfile()
   }
 };
 </script>

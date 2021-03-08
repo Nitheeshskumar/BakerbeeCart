@@ -48,4 +48,7 @@ export default {
   /* height: 70px; */
   overflow: hidden;
 }
+.card-desc{
+  font-size: 0.9rem;
+}
 </style>

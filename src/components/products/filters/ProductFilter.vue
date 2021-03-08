@@ -7,7 +7,7 @@
       <div class="form-group createProduct" v-if="loggedUser && loggedUser.isAdmin">
         <button class="btn buttonGreen-outline" @click="openCreateModal">Create New Product</button>
       </div>
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="filterPrdCty">By Category:</label>
         <select
           class="form-control"
@@ -21,8 +21,8 @@
             v-bind:value="category.productCategory"
           >{{category.productCategory}}</option>
         </select>
-      </div> -->
-      <div class="form-group">
+      </div>
+      <!-- <div class="form-group">
         <label for="filterPrdSlr">By Seller:</label>
         <select
           class="form-control"
@@ -36,7 +36,7 @@
             v-bind:value="seller.productSeller"
           >{{seller.productSeller}}</option>
         </select>
-      </div>
+      </div> -->
       <!-- <ul class="list-group">
         <li class="list-group-item">Cras justo odio</li>
         <li class="list-group-item">Dapibus ac facilisis in</li>
