@@ -1,54 +1,67 @@
 <template>
   <div class="cart-products">
-    <div class="row mt-5">
+    <form id="productCU " class=" needs-validation row mt-5" @submit.prevent="createShippingDetail" >
       <div class="col-sm-8">
-        <form id="productCU">
+        <div  >
           <!-- <p v-if="errors.length">
                   <b>Please correct the following error(s):</b>
                   <ul>
                     <li v-for="error in errors" :key="error">{{ error }}</li>
                   </ul>
           </p>-->
+           <div
+        class="alert alert-danger"
+        role="alert"
+        v-for="(error, index) in errorMessage"
+        :key="index"
+      >{{error}}</div>
           <div class="form-group">
-            <label for="productName">Address 1</label>
+            <label for="productName">House No</label>
             <input
+            v-model="shippingDetail.address1"
               type="text"
               class="form-control"
-              id="productName"
-              name="productName"
-              aria-describedby="emailHelp"
+              id="address1"
+              name="address1"
               placeholder="Enter Address"
+              required
             >
           </div>
           <div class="form-group">
-            <label for="productCategory">Address 2</label>
+            <label for="productCategory">Locality</label>
             <input
-              type="password"
+              v-model="shippingDetail.address2"
+             type="text"
               class="form-control"
-              id="productCategroyDummy"
-              placeholder="Password"
-              name="productCategroyDummy"
+              id="address2"
+              placeholder="Locality"
+              name="address2"
+              required
             >
           </div>
           <div class="form-group">
-            <label for="productSeller">Country</label>
+            <label for="productSeller">District</label>
             <input
-              type="password"
+              v-model="shippingDetail.district"
+             type="text"
               class="form-control"
-              id="productSellerDummy"
-              placeholder="Password"
-              name="productSellerDummy"
+              id="district"
+              placeholder="District"
+              name="district"
+              required
             >
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="productRating">Zip code</label>
+                <label for="productRating">Pin code</label>
                 <input
-                  type="password"
+                  v-model="shippingDetail.zipCode"
+                 type="text"
                   class="form-control"
-                  id="productRating"
-                  placeholder="Password"
+                  id="zipCode"
+                  placeholder="Pin"
+                   required
                 >
               </div>
             </div>
@@ -58,20 +71,23 @@
             class="form-text text-muted"
           >We'll never share your data with anyone else.</small>
           <br>
-        </form>
+        </div>
       </div>
       <div class="col-sm-4">
         <cart-calculator ref="cartCalculator"></cart-calculator>
         <ul class="list-group mb-3">
-          <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shipping</router-link>
-          <a
+          <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shopping</router-link>
+          <button
             href="javascript:;;"
             class="btn btn-success mt-2 text-white"
-            @click="createShippingDetail"
-          >Save & Pay</a>
+            type="submit"
+
+
+          >Save & Pay</button>
         </ul>
       </div>
-    </div>
+    <!-- </div> -->
+    </form>
   </div>
 </template>
 
@@ -79,7 +95,7 @@
 import { mapState, mapActions, mapMutations } from "vuex";
 import CartCalculator from "./CartCalculator";
 import axios from "axios";
-import { errorToaster } from "../../shared/service/ErrorHandler.js";
+import { errorToaster,infoToaster } from "../../shared/service/ErrorHandler.js";
 export default {
   name: "Checkout",
   components: { CartCalculator },
@@ -88,17 +104,24 @@ export default {
       shippingDetail: {
         address1: "",
         address2: "",
-        country: "",
+        district: "",
         zipCode: "",
         shippingDate: "",
         products: [],
         userId: "",
         totalPrice: ""
-      }
+      },
+      errorMessage: []
     };
   },
   methods: {
-    createShippingDetail() {}
+    createShippingDetail() {
+    const key =   Object.keys(this.shippingDetail).find(el=>!this.shippingDetail[el])
+
+    infoToaster("Ooopss !!", "All Units Sold Out",this);
+
+
+    }
   }
 };
 </script>

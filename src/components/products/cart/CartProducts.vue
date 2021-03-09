@@ -1,11 +1,11 @@
 <template>
   <div class="cart-products">
     <div class="row mt-5">
-      <div class="col">
+      <div class="col-md-8 order-md-1 mb-4">
         <div class="row">
           <template v-if="cartProducts.length > 0">
             <div class="col-md-4" v-for="(item, index) in cartProducts" :key="index">
-              <div class="card mb-4 shadow-sm" style="height: 410px">
+              <div class="card mb-4 shadow-sm" >
                 <img
                   class="card-img-top mt-2"
                   v-bind:src="item.productImage"
@@ -16,7 +16,7 @@
                   <h6 class="card-text"> <strong>{{item.productName}}</strong></h6>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"  v-on:click="navigateProductDetail(item)">View</button>
                     </div>
                     <small class="text-muted footerIcons">
                       <a href="javascript:;;" class="p-2" v-on:click="removeProductCart(item)">
@@ -43,10 +43,10 @@
           </template>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-md-4 order-md-2">
         <cart-calculator ref="cartCalculator"></cart-calculator>
         <ul class="list-group mb-3">
-          <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shipping</router-link>
+          <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shopping</router-link>
           <router-link to="/checkout" class="btn btn-danger mt-2 text-white">Checkout</router-link>
         </ul>
       </div>
@@ -78,6 +78,12 @@ export default {
       this.SET_CART_PRODUCTS(products);
       localStorage.setItem("iki-cart", JSON.stringify(products));
       this.$refs.cartCalculator.calulateTotalPrice();
+    },
+     navigateProductDetail(product) {
+      this.$router.push({
+        name: "productDetails",
+        params: { id: product._id }
+      });
     }
   },
   mounted() {}

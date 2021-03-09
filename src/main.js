@@ -9,11 +9,13 @@ import NProgress from 'nprogress'
 // require styles
 import 'swiper/dist/css/swiper.css'
 import '../node_modules/nprogress/nprogress.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 import VueToastr from "vue-toastr";
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueToastr,{
-  defaultTimeout: 2500
+  defaultTimeout: 2000
 })
 
 Vue.config.productionTip = false

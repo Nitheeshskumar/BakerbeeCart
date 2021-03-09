@@ -61,7 +61,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="productRating">Product Rating</label>
-                    <input type="number" class="form-control" id="productRating" placeholder="Out of 5">
+                    <input type="number" class="form-control" id="productRating" v-model="product.productRating" placeholder="Out of 5">
                   </div>
                 </div>
 

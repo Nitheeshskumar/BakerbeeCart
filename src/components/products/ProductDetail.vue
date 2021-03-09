@@ -85,7 +85,7 @@
 import axios from "axios";
 import { mapState, mapActions, mapMutations } from "vuex";
 import CardTemplate from "../shared/CardTemplate";
-import { errorToaster } from "../../components/shared/service/ErrorHandler.js";
+import { errorToaster ,infoToaster, successToaster } from "../../components/shared/service/ErrorHandler.js";
 
 export default {
   name: "productDetail",
@@ -97,25 +97,8 @@ export default {
     };
   },
   methods: {
-    getSimilarProduct(productSeller) {
-      axios
-        .get(`${process.env.VUE_APP_BASE_URL}/products/similarProduct`, {
-          params: { productSeller: productSeller }
-        })
-        .then(response => {
-          this.similarProduct = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    ...mapMutations(["ADD_CART_LOCAL"]),
-    addToCart(product) {
-      this.ADD_CART_LOCAL(product);
-    }
-  },
-  created() {
-    axios
+    initialLoad() {
+       axios
       .get(`${process.env.VUE_APP_BASE_URL}/products/${this.$route.params.id}`)
       .then(response => {
         this.product = response.data;
@@ -135,9 +118,45 @@ export default {
       })
       .catch(error => {
         console.log(error);
-        errorToaster("Error while fetching similar products", "",this);
+        errorToaster("Error while fetching products", "",this);
       });
-  }
+    },
+    getSimilarProduct(productSeller) {
+      axios
+        .get(`${process.env.VUE_APP_BASE_URL}/products/similarProduct`, {
+          params: { productSeller: productSeller }
+        })
+        .then(response => {
+          this.similarProduct = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    ...mapMutations(["ADD_CART_LOCAL"]),
+    addToCart(product) {
+       const data = _.find(this.$store.getters.cartProducts, product);
+      if (data) {
+        infoToaster("Already Added", "Product Already Added",this);
+      } else {
+        successToaster("Added Successfully", "Product Added Successfully",this);
+        this.ADD_CART_LOCAL(product);
+      }
+    }
+  },
+  created() {
+  //  this.initialLoad()
+  },
+  watch: {
+     '$route.params.id': {
+        handler: function(search) {
+           this.initialLoad()
+           console.log(search)
+        },
+        deep: true,
+        immediate: true
+      }
+}
 };
 </script>
 
@@ -175,6 +194,7 @@ export default {
   left: 0;
   white-space: nowrap;
   overflow: hidden;
+  width: 0;
 }
 
 .stars-inner::before {

@@ -1,6 +1,6 @@
 <template>
   <div class="create-account">
-    <form class="form-signup needs-validation" @submit.prevent="createAccount" novalidate>
+    <form class="form-signup needs-validation" @submit.prevent="createAccount" >
       <img class="mb-4" src="../assets/create-account.svg" alt width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Create an account</h1>
       <div
