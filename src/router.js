@@ -48,6 +48,13 @@ export default new Router({
         component: () => import('./views/Products.vue')
     },
     {
+        path: '/orders',
+        name: 'orders',
+        key:"$route.fullPath",
+        component: () => import('./views/Orders.vue')
+    },
+
+    {
         path: '/products/:id',
         name: 'productDetails',
         component: () => import('./components/products/ProductDetail.vue')

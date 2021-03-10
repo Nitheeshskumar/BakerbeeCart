@@ -9,7 +9,8 @@ var UserSchema = new Schema({
     isAdmin: Boolean,
     password: String,
     createdOn: String,
-    phoneNumber :String
+    phoneNumber :String,
+    orders:Array
 })
 
 module.exports = mongoose.model('User', UserSchema)

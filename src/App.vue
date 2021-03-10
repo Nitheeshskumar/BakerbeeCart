@@ -2,7 +2,10 @@
   <div id="app" class="container width100">
     <main>
       <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
-        <img alt="Vue logo" src="./assets/logo.png" width="50px">
+        <div class="imagecontainer">
+        <img alt="Vue logo" src="./assets/logo.png" width="50px" class="CartLogo">
+        <!-- <span class="overlapCart">({{this.cartProducts.length}})</span> -->
+        </div>
         <button
           class="navbar-toggler"
           type="button"
@@ -58,6 +61,7 @@
 
                 Cart<span class="ml-1"><i class="fa fa-shopping-cart mr-1"> </i>({{this.cartProducts.length}})</span>
               </router-link>
+               <router-link to="/orders" class="dropdown-item" v-if="loggedUser && loggedUser.isAdmin"  @click.native="closeNavbar">Orders</router-link>
                 <router-link
                   to="/"
                   class="dropdown-item text-danger"
@@ -263,5 +267,23 @@ overflow-y: auto;
 
 .modal {
   min-height: 100%;
+}
+.CartLogo{
+   position:relative;
+}
+.overlapCart{
+color: #FFFFFF;
+background: #FFFFFF;
+text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+// text-shadow: 2px 0 0px #800040, 3px 2px 0px rgba(77,0,38,0.5), 3px 0 3px #FF002B, 5px 0 3px #800015, 6px 2px 3px rgba(77,0,13,0.5), 6px 0 9px #FF5500, 8px 0 9px #802A00, 9px 2px 9px rgba(77,25,0,0.5), 9px 0 18px #FFD500, 11px 0 18px #806A00, 12px 2px 18px rgba(77,66,0,0.5), 12px 0 30px #D4FF00, 14px 0 30px #6A8000, 15px 2px 30px rgba(64,77,0,0.5), 15px 0 45px #80FF00, 17px 0 45px #408000, 17px 2px 45px rgba(38,77,0,0.5), -19px -4px 20px #CE5937;
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imagecontainer {
+  position: relative;
+  text-align: center;
+  color: white;
 }
 </style>

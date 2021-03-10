@@ -87,7 +87,6 @@ export default {
       axios
         .post(`${process.env.VUE_APP_BASE_URL}/login`, user)
         .then(response => {
-          debugger
           this.showLoader = false;
           this.ADD_LOGGED_USER(response.data[0]);
           event.target.reset();

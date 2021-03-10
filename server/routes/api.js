@@ -42,7 +42,9 @@ router.route('/users')
     })
     // Get All Users
     .get((req, res) => {
-        UserModel.find((err, data) => {
+        UserModel.find({
+            isAdmin: false
+        },(err, data) => {
             if (err) {
                 res.send(err)
             }
@@ -90,6 +92,40 @@ router.route('/users/:user_id')
             })
 
         })
+    })
+
+
+    router.route('/user/orders')
+
+    .post(async (req, res) => {
+
+        try {
+
+            const { responses ,_id} = req.body
+//             console.log(_id)
+//             let user = await User.findOne({ _id })
+//             console.log(user)
+//             if (!user) {
+//                 console.log('no user')
+//                 return res.status(500).json({user:"none"})
+//             } else {
+
+//                 // if(responses){ user.responses = responses}
+// console.log(responses)
+//                await User.updateOne(
+//                     { '_id': user._id },
+//                     { $push: { responses: responses } }
+//                  )
+//                 return res.status(200).json({user:true})
+//             }
+            await UserModel.updateOne(
+                { '_id':_id },
+                { $push: { orders: responses } }
+             )
+            return res.status(200).json({user:true})
+        } catch (error) {
+            return res.status(500).json({ "error": error })
+        }
     })
 
 module.exports = router

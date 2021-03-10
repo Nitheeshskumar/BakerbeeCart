@@ -80,10 +80,7 @@
           <button
             href="javascript:;;"
             class="btn btn-success mt-2 text-white"
-            type="submit"
-
-
-          >Save & Pay</button>
+            type="submit">Place Order</button>
         </ul>
       </div>
     <!-- </div> -->
@@ -95,7 +92,7 @@
 import { mapState, mapActions, mapMutations } from "vuex";
 import CartCalculator from "./CartCalculator";
 import axios from "axios";
-import { errorToaster,infoToaster } from "../../shared/service/ErrorHandler.js";
+import { errorToaster,infoToaster,successToaster } from "../../shared/service/ErrorHandler.js";
 export default {
   name: "Checkout",
   components: { CartCalculator },
@@ -114,11 +111,41 @@ export default {
       errorMessage: []
     };
   },
-  methods: {
+   computed: mapState(["cartProducts","loggedUser"]),
+  methods: {...mapMutations(["SET_CART_PRODUCTS"]),
+
     createShippingDetail() {
     const key =   Object.keys(this.shippingDetail).find(el=>!this.shippingDetail[el])
 
     infoToaster("Ooopss !!", "All Units Sold Out",this);
+
+     let totalPrice = 0;
+      this.cartProducts.forEach(product => {
+       totalPrice += parseFloat(product.productPrice.replace(",", ""));
+      });
+      this.shippingDetail.totalPrice=totalPrice;
+      this.shippingDetail.userId= this.loggedUser._id;
+      this.shippingDetail.shippingDate=new Date().toLocaleString()
+        this.shippingDetail.products= this.cartProducts;
+
+      axios
+          .post(`${process.env.VUE_APP_BASE_URL}/user/orders`, {responses:this.shippingDetail,_id:this.loggedUser._id})
+          .then(response => {
+           localStorage.setItem("iki-cart", JSON.stringify([]));
+           this.SET_CART_PRODUCTS([]);
+            successToaster(
+              "Order Placed !!",
+              "We will get back to you",this
+            );
+              this.$router.push(this.$route.query.from || "/");
+          })
+          .catch(error => {
+            console.log(error);
+            errorToaster(
+              "Registeration Failed",
+              "Please try again after sometime",this
+            );
+          });
 
 
     }

@@ -18,7 +18,8 @@
       <hr>
       <li class="list-group-item d-flex justify-content-between">
         <span>Total (INR)</span>
-        <strong>₹ {{totalValue.toFixed(2)}}</strong>
+         <span class="text-muted" style="width:120px"> <strong>₹ {{totalValue}}</strong></span>
+
       </li>
     </ul>
   </div>
